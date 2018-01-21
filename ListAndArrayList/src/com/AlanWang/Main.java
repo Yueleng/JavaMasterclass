@@ -1,6 +1,6 @@
 package com.AlanWang;
 
-import javax.naming.directory.SearchControls;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -49,6 +49,8 @@ public class Main {
                     searchForItem();
                     break;
                 case 6:
+                    processArrayList();
+                case 7:
                     quit = true;
                     break;
             }
@@ -57,21 +59,18 @@ public class Main {
 
 
 
-
-
-
-
     }
 
     public static void printInstructions(){
         System.out.println("\nPress");
-        System.out.println("\n 0 - To print choice options.");
-        System.out.println("\n 1 - To print the list of grocery items.");
-        System.out.println("\n 2 - To add an item to the list.");
-        System.out.println("\n 3 - To modify an item in the list.");
-        System.out.println("\n 4 - To remove an item from the list.");
-        System.out.println("\n 5 - To search for an item form the list.");
-        System.out.println("\n 6 - To quit the application.");
+        System.out.println("\t 0 - To print choice options.");
+        System.out.println("\t 1 - To print the list of grocery items.");
+        System.out.println("\t 2 - To add an item to the list.");
+        System.out.println("\t 3 - To modify an item in the list.");
+        System.out.println("\t 4 - To remove an item from the list.");
+        System.out.println("\t 5 - To search for an item form the list.");
+        System.out.println("\t 6 - To search for an item form the list.");
+        System.out.println("\t 7 - To quit the application.");
     }
 
     public static void addItem(){
@@ -80,30 +79,37 @@ public class Main {
     }
 
     public static void modifyItem() {
-        System.out.println("Enter item number:");
-        int itemNo = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter replacement item: ");
+        System.out.println("Current item name: ");
+        String itemTyped = scanner.nextLine();
+        System.out.println("Enter new item: ");
         String newItem = scanner.nextLine();
-        groceryList.modifyGroceryItem(itemNo - 1, newItem);
+        groceryList.modifyGroceryItem(itemTyped, newItem);
     }
 
     public static void removeItem() {
-        System.out.println("Enter item number: ");
-        int itemNo = scanner.nextInt();
-        scanner.nextLine();
-        groceryList.removeGroceryItem(itemNo -1);
+        System.out.println("Enter item name: ");
+        String itemTyped = scanner.nextLine();
+        groceryList.removeGroceryItem(itemTyped);
     }
 
     public static void searchForItem() {
         System.out.println("Enter to search for: ");
         String searchItem = scanner.nextLine();
-        if (groceryList.findItem(searchItem) != null) {
+        if (groceryList.onFile(searchItem)) {
             System.out.println("Found " + searchItem + " in our grocery list");
         } else {
             System.out.println(searchItem + " is not in the shopping list");
         }
+    }
 
+    public static void processArrayList() {
+        ArrayList<String> newArray = new ArrayList<String>();
+        newArray.addAll(groceryList.getGroceryList());
+        // another way to initialize.
+        ArrayList<String> nextArray = new ArrayList<String>(groceryList.getGroceryList());
+
+        String[] myArray = new String[groceryList.getGroceryList().size()];
+        myArray = groceryList.getGroceryList().toArray(myArray);
     }
 
 
@@ -129,4 +135,5 @@ public class Main {
             baseData[i] = original[i];
         }
     }
+
 }
