@@ -25,7 +25,7 @@ public class Bank {
     public  boolean addCustomer(String branchName, String customerName, double initialAmount) {
         Branch currentBranch = findBranch(branchName);
         if (currentBranch != null) {
-            return currentBranch.newCustormer(customerName, initialAmount);
+            return currentBranch.newCustomer(customerName, initialAmount);
         }
         return false;
     }
@@ -41,7 +41,7 @@ public class Bank {
     private Branch findBranch(String branchName) {
         for (int i = 0; i < branches.size(); i++){
             Branch currentBranch = branches.get(i);  // avoid running two time branches.get(i)
-            if (currentBranch.equals(currentBranch.getName())) {
+            if (branchName.equals(currentBranch.getName())) {
                 return currentBranch;
             }
         }
@@ -50,6 +50,10 @@ public class Bank {
 
     public boolean listCustomers(String branchName, boolean showTransactions) {
         Branch branch = findBranch(branchName);
+        if (branch == null) {
+            System.out.println("Branch not found");
+        }
+
         if (branch != null) {
             System.out.println("Customer details for branch " + branch.getName());
 
