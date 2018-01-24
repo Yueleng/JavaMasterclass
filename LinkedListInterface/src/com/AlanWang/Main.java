@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
 
-    private static ArrayList<Album> albums = new ArrayList<Album>();
+    private static List<Album> albums = new ArrayList<Album>();
 
 
     public static void main(String[] args) {
@@ -48,7 +48,7 @@ public class Main {
         album2.addSong("Night of the long knives", 5.12);
         albums.add(album2);
 
-        LinkedList<Song> playList = new LinkedList<Song>();
+        List<Song> playList = new ArrayList<Song>();
 
         albums.get(0).addToPlayList("You can't do it right", playList);
         albums.get(0).addToPlayList("Holy man", playList);
@@ -63,7 +63,7 @@ public class Main {
         play(playList);
     }
 
-    private static void play(LinkedList<Song> playList) {
+    private static void play(List<Song> playList) {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         boolean forward = true;
@@ -159,7 +159,7 @@ public class Main {
                            "6 - delete current song from playList");
     }
 
-    private static void printList(LinkedList<Song> playList) {
+    private static void printList(List<Song> playList) {
         // We use Iterator here, it only has the ability to go next.
         Iterator<Song> iterator = playList.iterator();
         System.out.println("======================================");

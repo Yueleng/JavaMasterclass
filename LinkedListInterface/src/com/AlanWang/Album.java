@@ -5,6 +5,7 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Album {
     private String name;
@@ -36,7 +37,7 @@ public class Album {
         return null;
     }
 
-    public boolean addToPlayList (int trackNumber, LinkedList<Song> playList) {
+    public boolean addToPlayList (int trackNumber, List<Song> playList) {
         int idx = trackNumber - 1;
         if ((idx >= 0 ) && (idx < this.songs.size())) {
             playList.add(this.songs.get(idx));
@@ -47,7 +48,7 @@ public class Album {
     }
 
     // Overloading
-    public  boolean addToPlayList (String title, LinkedList<Song> playList) {
+    public  boolean addToPlayList (String title, List<Song> playList) {
         Song CurrentSong = findSong(title);
         if (CurrentSong != null) {
             playList.add(CurrentSong);
