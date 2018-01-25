@@ -36,6 +36,7 @@ public class Main {
         System.out.println(tim);
 
         ISaveable warewolf = new Monster("Warewolf", 20,40);
+        System.out.println("Strength = " + ((Monster) warewolf).getStrength()); // Very tedious.
         System.out.println(warewolf);
         saveObject(warewolf);
 
